@@ -43,11 +43,9 @@ def extract(url, table_attribs):
             mc_usd_billion = float(cols[2].text.strip().replace(',', '').replace('$', '').strip())  # Market Cap in Billion USD
             extracted_data.append([name, mc_usd_billion])
 
-    # To create a DataFrame 
+    # Create a DataFrame 
     columns = table_attribs 
     df = pd.DataFrame(extracted_data, columns=columns)
-    #print(df)
-
     return df
 
 def transform(df, csv_path):
@@ -67,7 +65,6 @@ def transform(df, csv_path):
         log_progress("Transformation complete. New columns: MC_GBP_Billion, MC_EUR_Billion, MC_INR_Billion.")
     else:
         log_progress("MC_USD_Billion column not found in the DataFrame.")
-    #print(df)
     return df
 
 def load_to_csv(df, output_path):
@@ -87,6 +84,7 @@ def run_query(query_statement, sql_connection):
     prints the output on the terminal. Function returns nothing. '''
     result = sql_connection.execute(query_statement).fetchall()
     print(result)
+
 ''' Here, you define the required entities and call the relevant
 functions in the correct order to complete the project. Note that this
 portion is not inside any function.'''
@@ -100,15 +98,14 @@ load_to_db(df_transformed, conn,table_name)  # Load data to SQLite database
 
 ''' 
 # Running a sample query to test
-run_query("SELECT * FROM banks_table LIMIT 5", conn)  # Fetch first 5 records from the table
 ''' 
-log_progress('Print the contents of the entire table')
+log_progress('Print the contents of the entire table.')
 run_query("SELECT * FROM Largest_banks",conn)
 
-log_progress('Print the average market capitalization of all the banks in Billion USD')
+log_progress('Print the average market capitalization of all the banks in Billion USD.')
 run_query("SELECT AVG(MC_GBP_Billion) FROM Largest_banks",conn)
 
-log_progress('Print only the names of the top 5 banks')
+log_progress('Print only the names of the top 5 banks.')
 run_query("SELECT Name from Largest_banks LIMIT 5",conn)
 
 conn.close()
