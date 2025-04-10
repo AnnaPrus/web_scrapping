@@ -1,0 +1,6 @@
+2025-Apr-10-20:33:25,Transformation complete. New columns: MC_GBP_Billion, MC_EUR_Billion, MC_INR_Billion.
+2025-Apr-10-20:33:25,Data saved to CSV file: ./banks_transformed.csv
+2025-Apr-10-20:33:25,Data loaded into table: Largest_banks
+2025-Apr-10-20:33:25,Print the contents of the entire table.
+2025-Apr-10-20:33:25,Print the average market capitalization of all the banks in Billion USD.
+2025-Apr-10-20:33:25,Print only the names of the top 5 banks.
